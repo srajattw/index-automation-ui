@@ -1,0 +1,115 @@
+<!-- Page Content -->
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Index Configuration
+                <small>Define Index</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="../index.html">Home</a>
+                </li>
+                <li class="active">Index Configuration</li>
+            </ol>
+        </div>
+
+    </div>
+
+
+    <div class="row" ng-controller="IndexConfigurationCtrl">
+
+        <div class="col-sm-8">
+
+            <form role="form" method="POST" ng-submit="submitForm()">
+                <div class="row">
+
+                    <div class="form-group col-lg-4">
+                        <label for="input1">Index Name</label>
+                        <input type="text" name="contact_name" class="form-control" id="input1" ng-model="index.indexName">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="input1">Index Code</label>
+                        <input type="text" name="contact_name" class="form-control" id="input5" ng-model="index.indexCode">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="input2">Base Index</label>
+                        <input type="text" name="contact_email" class="form-control" id="input2" ng-model="index.baseIndex">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="input3">Base Index Level</label>
+                        <input type="text" name="contact_phone" class="form-control" id="input3" ng-model="index.baseIndexLevel">
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                        <label for="input3">Index Start Date</label>
+                        <input type="date" name="contact_phone" class="form-control" id="input6" ng-model="index.indexStartDate">
+                    </div>
+
+
+                    <div class="form-group col-lg-4">
+                        <label for="input3">Index Frequency</label>
+                        <input type="text" name="contact_phone" class="form-control" id="input7">
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group col-lg-4">
+                        <label data-toggle="collapse" data-target="#methodology">Methodology</label>
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div id="methodology" class="collapse in" >
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-lg-4">
+                        <select ng-model="methodology" ng-change="update()">
+                            <option value="">-Select Methodology-</option>
+                            <option ng-repeat="m in methodologies" value="{{m}}">{{m.name}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+
+
+                        <div ng-repeat="field in methodology1.attributes" >
+                            <ng-form name="form">
+                                <!-- TEXT FIELDS -->
+                                <div ng-if="field.type=='text'" class="form-group col-lg-4">
+                                    <label for="{{field.name}}">{{field.label}}</label>
+
+                                    <input type="{{ field.type }}" dynamic-name="field.name" id="{{field.name}}" dynamic-id="{{field.name}}"
+
+                                           data-ng-model="methodology1.attributes[$index].data"
+                                           class="form-control" required />
+                                        <!--<span ng-show="myForm.{{field.name}}.$dirty && myForm.{{field.name}}.$error.required">Required!</span>.-->
+                                    <!--<span  data-ng-model="methodology1.attributes[$index]" names[$index]" data-ng-show=" {{'form.'+field.name+'.$dirty && form.'+field.name+'.$error.required'}}">Required!</span> -->
+
+                                </div>
+
+                            </ng-form>
+
+                            <label>{{field.data}}</label>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+
+
+                    <div class="form-group col-lg-8">
+                        <button type="submit" class="btn btn-primary" ng-disabled="isValid">Submit</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="isValid" onclick="../index.html">Cancel</button>
+                        <label>{{message}}</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.container -->
